@@ -3,7 +3,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import Nav from '../components/nav';
 
-const Index = () => {
+const Upload = () => {
   const route = useRouter();
   return (
     <div>
@@ -23,4 +23,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default Upload;

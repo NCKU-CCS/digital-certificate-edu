@@ -1,7 +1,11 @@
 import React from 'react';
 import Router from 'next/router';
 
-class Nav extends React.Component {
+interface IProps {
+  path: string;
+}
+
+class Nav extends React.Component<IProps> {
   render() {
     const navitems = [
       { str: '證書上傳', ref: '/upload' },
@@ -11,11 +15,20 @@ class Nav extends React.Component {
     return (
       <div className="nav">
         <div className="nav-list">
-          <img className="nav-img" src="/static/edu_icon.png" alt="edu_icon" />
+          <img
+            className="nav-img"
+            src="/static/edu_icon.png"
+            alt="edu_icon"
+            onClick={() => Router.push('/')}
+          />
           {navitems.map((item, index) => {
             return (
               <span
-                className="nav-span"
+                className={
+                  (this.props.path === item.ref
+                    ? 'nav-span-selected'
+                    : 'nav-span-default') + ' nav-span'
+                }
                 key={index}
                 onClick={() => Router.push(item.ref)}
               >
@@ -32,7 +45,7 @@ class Nav extends React.Component {
             background-color: #ffffff;
             display: flex;
             justify-content: flex-start;
-            align-items: center;
+            align-items: flex-start;
             flex-direction: row;
           }
           .nav-list {
@@ -48,7 +61,6 @@ class Nav extends React.Component {
             padding: 0 50px 0 50px;
           }
           .nav-span {
-            -webkit-text-stroke: 0.4px #676464;
             font-family: EdwardianScriptITC;
             font-size: 33px;
             font-weight: normal;
@@ -57,12 +69,27 @@ class Nav extends React.Component {
             line-height: 1.21;
             letter-spacing: normal;
             text-align: left;
+            height: inherit;
             padding: 0 30px 0 30px;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            box-sizing: border-box;
+          }
+          .nav-span-default {
             color: #676464;
+            -webkit-text-stroke: 0.4px #676464;
+          }
+          .nav-span-selected {
+            color: #4781e6;
+            -webkit-text-stroke: 0.4px #4781e6;
+            border-top: 6px solid transparent;
+            border-bottom: 6px solid #4781e6;
           }
         `}</style>
       </div>
     );
   }
 }
+
 export default Nav;

@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "lint": "tslint -c tslint.json -p tsconfig.json"
   },
   "dependencies": {
     "next": "9.0.6",
@@ -26,7 +27,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "yarn run lint && lint-staged"
     }
   },
   "lint-staged": {

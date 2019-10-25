@@ -36,6 +36,10 @@ const Container: React.FC<IProps> = (
           box-shadow: 3px 3px 10px 0 rgba(51, 188, 60, 0.29);
           border: solid 6px #33bc3c;
         }
+        .warning {
+          box-shadow: 3px 3px 10px 0 rgba(221, 200, 36, 0.45);
+          border: solid 6px #ddc824;
+        }
       `}</style>
     </div>
   );

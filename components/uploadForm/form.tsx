@@ -1,6 +1,19 @@
 import React, { useState, useRef } from 'react';
 
-const Form: React.FC = () => {
+enum EStep {
+  PENDING = 'pending',
+  WAITING = 'waiting',
+  WARNING = 'warning',
+  SUCCESS = 'success',
+  FAILURE = 'failure',
+}
+
+interface IProps {
+  setStep: React.Dispatch<React.SetStateAction<EStep>>;
+  setResp: React.Dispatch<React.SetStateAction<any>>;
+}
+
+const Form: React.FC<IProps> = (props: IProps) => {
   const fileBox = useRef(null);
   const [fileArray, setfileArray] = useState([]);
   const [dragging, setdragging] = useState(false);
@@ -14,10 +27,18 @@ const Form: React.FC = () => {
   };
   const handleSubmit = (event: React.SyntheticEvent) => {
     event.preventDefault();
+
     // After connection to API, console.log will be remove
     // tslint:disable-next-line: no-console
     console.log(fileArray, fileArray.length);
+
+    props.setStep(EStep.WAITING);
+    setTimeout(() => {
+      props.setResp({ foo: 'bar' });
+      props.setStep(EStep.SUCCESS);
+    }, 10000);
   };
+
   /* form drag */
   const handleDragOver = (event: React.DragEvent) => {
     event.preventDefault();

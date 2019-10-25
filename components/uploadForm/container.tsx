@@ -31,14 +31,17 @@ const Container: React.FC<IProps> = (
         .failure {
           box-shadow: 3px 3px 10px 0 rgba(221, 36, 36, 0.45);
           border: solid 6px #dd2424;
+          background-color: #f5f5f5;
         }
         .success {
           box-shadow: 3px 3px 10px 0 rgba(51, 188, 60, 0.29);
           border: solid 6px #33bc3c;
+          background-color: #f5f5f5;
         }
         .warning {
           box-shadow: 3px 3px 10px 0 rgba(221, 200, 36, 0.45);
           border: solid 6px #ddc824;
+          background-color: #f5f5f5;
         }
       `}</style>
     </div>

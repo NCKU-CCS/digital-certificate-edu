@@ -1,15 +1,21 @@
 import React, { useState } from 'react';
 import Container from './container';
 import Form from './form';
+import Loading from './loading';
+import Final from './final';
 
 enum EStep {
   PENDING = 'pending',
+  WAITING = 'waiting',
+  WARNING = 'warning',
   SUCCESS = 'success',
   FAILURE = 'failure',
 }
 
 const UploadForm: React.FC = () => {
   const [step, setstep] = useState(EStep.PENDING);
+  const [resp, setResp] = useState({} as any);
+
   return (
     <div
       style={{
@@ -20,42 +26,27 @@ const UploadForm: React.FC = () => {
         alignItems: 'center',
       }}
     >
-      <Container step={step} display={step === EStep.PENDING ? 'flex' : 'none'}>
-        <Form />
+      <Container
+        step={step}
+        display={
+          step === EStep.PENDING || step === EStep.WAITING ? 'flex' : 'none'
+        }
+      >
+        {step === EStep.PENDING ? (
+          <Form setStep={setstep} setResp={setResp} />
+        ) : (
+          <Loading />
+        )}
       </Container>
 
-      {/* <Container
+      <Container
         step={step}
-        display={(step!==EStep.PENDING) ? 'flex' : 'none'}
-      >
-        {
-          (step===EStep.SUCCESS) ? (
-            <React.Fragment>
-              <img src="/static/success.png"/>
-              <span style={{
-                fontSize: '40px',
-                color: '#33bc3c',
-                WebkitTextStroke: '0.4px #33bc3c',
-                margin: '26px 0 78px 0',
-              }}>
-                認證成功
-              </span>
-            </React.Fragment>
-          ) : (
-            <React.Fragment>
-              <img src="/static/failure.png"/>
-              <span style={{
-                fontSize: '40px',
-                color: '#dd2424',
-                WebkitTextStroke: '0.4px #dd2424',
-                margin: '26px 0 78px 0',
-              }}>
-                認證失敗
-              </span>
-            </React.Fragment>
-          )
+        display={
+          step !== EStep.PENDING && step !== EStep.WAITING ? 'flex' : 'none'
         }
-      </Container> */}
+      >
+        <Final step={step} />
+      </Container>
     </div>
   );
 };

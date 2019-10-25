@@ -43,7 +43,7 @@ const Final: React.FC<IProp> = (props: IProp) => {
               margin: '26px 0 78px 0',
             }}
           >
-            認證失敗
+            認證成功
           </span>
         </React.Fragment>
       );
@@ -51,7 +51,7 @@ const Final: React.FC<IProp> = (props: IProp) => {
     case EStep.WARNING: {
       return (
         <React.Fragment>
-          <img src="/static/failure.png" />
+          <img src="/static/warning.png" />
           <span
             style={{
               fontSize: '40px',

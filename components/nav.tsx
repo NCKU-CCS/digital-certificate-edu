@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Router from 'next/router';
+import EduIcon from '../static/edu_icon.png';
 
 const Nav: React.FC = () => {
   const [path, setPath] = useState('');
@@ -16,7 +17,7 @@ const Nav: React.FC = () => {
   return (
     <div className="nav">
       <div className="nav-list">
-        <img className="nav-img" src="/static/edu_icon.png" alt="edu_icon" />
+        <img className="nav-img" src={EduIcon} alt="edu_icon" />
         {navitems.map((item, index) => {
           return (
             <span

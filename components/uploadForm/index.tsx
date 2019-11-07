@@ -3,14 +3,7 @@ import Container from './container';
 import Form from './form';
 import Loading from './loading';
 import Final from './final';
-
-enum EStep {
-  PENDING = 'pending',
-  WAITING = 'waiting',
-  WARNING = 'warning',
-  SUCCESS = 'success',
-  FAILURE = 'failure',
-}
+import { EStep } from '../../constants';
 
 const UploadForm: React.FC = () => {
   const [step, setstep] = useState(EStep.PENDING);
@@ -45,7 +38,7 @@ const UploadForm: React.FC = () => {
           step !== EStep.PENDING && step !== EStep.WAITING ? 'flex' : 'none'
         }
       >
-        <Final step={step} />
+        <Final step={step} setStep={setstep} data={resp} />
       </Container>
     </div>
   );

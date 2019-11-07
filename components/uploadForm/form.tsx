@@ -1,12 +1,7 @@
 import React, { useState, useRef } from 'react';
-
-enum EStep {
-  PENDING = 'pending',
-  WAITING = 'waiting',
-  WARNING = 'warning',
-  SUCCESS = 'success',
-  FAILURE = 'failure',
-}
+import { EStep } from '../../constants';
+import FileIcon from '../../static/file.png';
+import UploadIcon from '../../static/upload.png';
 
 interface IProps {
   setStep: React.Dispatch<React.SetStateAction<EStep>>;
@@ -88,7 +83,7 @@ const Form: React.FC<IProps> = (props: IProps) => {
       >
         {fileArray.length === 0 ? (
           <React.Fragment>
-            <img src="/static/upload.png" />
+            <img src={UploadIcon} />
             <label>
               拖曳或是
               <span style={{ borderBottom: '2px solid #4781e6' }}>上傳</span>
@@ -104,7 +99,7 @@ const Form: React.FC<IProps> = (props: IProps) => {
         ) : (
           fileArray.map((file, index) => (
             <React.Fragment key={index}>
-              <img src="/static/file.png" />
+              <img src={FileIcon} />
               <label>
                 <span>{file.name}</span>
                 <input

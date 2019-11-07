@@ -1,5 +1,5 @@
 const withImages = require('next-images');
-const PROJ_NAME = 'digital-certificate-ncku';
+const PROJ_NAME = 'digital-certificate-edu';
 const GITHUB = process.env.DEPLOY_ENV === 'github';
 
 module.exports = withImages({

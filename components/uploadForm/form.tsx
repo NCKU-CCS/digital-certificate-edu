@@ -78,7 +78,7 @@ const Form: React.FC<IProps> = (props: IProps) => {
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}
         style={{
-          outline: dragging ? '3px blue dashed' : 'none',
+          borderColor: dragging ? 'blue' : '#707070',
         }}
       >
         {fileArray.length === 0 ? (
@@ -135,8 +135,8 @@ const Form: React.FC<IProps> = (props: IProps) => {
           font-style: normal;
           line-height: 1.2;
           letter-spacing: normal;
+          cursor: pointer;
         }
-
         .center {
           display: flex;
           justify-content: center;

@@ -6,7 +6,7 @@ import Final from './final';
 import { EStep } from '../../constants';
 
 const UploadForm: React.FC = () => {
-  const [step, setstep] = useState(EStep.PENDING);
+  const [step, setStep] = useState(EStep.PENDING);
   const [resp, setResp] = useState({} as any);
 
   return (
@@ -26,7 +26,7 @@ const UploadForm: React.FC = () => {
         }
       >
         {step === EStep.PENDING ? (
-          <Form setStep={setstep} setResp={setResp} />
+          <Form setStep={setStep} setResp={setResp} />
         ) : (
           <Loading />
         )}
@@ -38,7 +38,7 @@ const UploadForm: React.FC = () => {
           step !== EStep.PENDING && step !== EStep.WAITING ? 'flex' : 'none'
         }
       >
-        <Final step={step} setStep={setstep} data={resp} />
+        <Final step={step} setStep={setStep} data={resp} />
       </Container>
     </div>
   );

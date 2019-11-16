@@ -87,7 +87,7 @@ const Loading: React.FC = () => {
             content: '...';
           }
           100% {
-            content: '...';
+            content: '.';
           }
         }
       `}</style>

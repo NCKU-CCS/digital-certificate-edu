@@ -5,7 +5,7 @@ import EduIcon from '../static/edu_icon.png';
 const Nav: React.FC = () => {
   const [path, setPath] = useState('');
   useEffect(() => {
-    setPath(window.location.pathname);
+    setPath(Router.pathname);
   });
 
   const navitems = [
@@ -74,6 +74,7 @@ const Nav: React.FC = () => {
           justify-content: center;
           align-items: center;
           box-sizing: border-box;
+          cursor: pointer;
         }
         .nav-span-default {
           color: #676464;

@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import axios from 'axios';
 import { EStep } from '../../constants';
 import FileIcon from '../../static/file.png';
 import UploadIcon from '../../static/upload.png';
@@ -20,18 +21,33 @@ const Form: React.FC<IProps> = (props: IProps) => {
       setfileArray([fileBox.current.files[0]]);
     }
   };
-  const handleSubmit = (event: React.SyntheticEvent) => {
+  const handleSubmit = async (event: React.SyntheticEvent) => {
     event.preventDefault();
+    const formData = new FormData();
+    formData.append('file', fileArray[0]);
 
-    // After connection to API, console.log will be remove
-    // tslint:disable-next-line: no-console
-    console.log(fileArray, fileArray.length);
-
-    props.setStep(EStep.WAITING);
-    setTimeout(() => {
-      props.setResp({ foo: 'bar' });
+    // tslint:disable
+    const d = await axios
+      .post(`${process.env.MAIN_HOST}/students/validate/`, formData, {
+        headers: new Headers({ 'Content-Type': 'multipart/form-data"' }),
+      })
+      .then(resp => resp.data)
+      .catch(err => {
+        console.log(err);
+        return null;
+      });
+    // tslint:enable
+    if (d.appled && d.error_msg === 'success') {
+      props.setResp(d);
       props.setStep(EStep.SUCCESS);
-    }, 10000);
+    } else if (d.appled && d.error_msg !== 'success') {
+      props.setStep(EStep.WARNING);
+    } else if (!d.appled && d.error_msg === 'failure') {
+      props.setStep(EStep.FAILURE);
+    } else {
+      // not found
+      props.setStep(EStep.FAILURE);
+    }
   };
 
   /* form drag */

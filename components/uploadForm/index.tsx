@@ -38,7 +38,7 @@ const UploadForm: React.FC = () => {
           step !== EStep.PENDING && step !== EStep.WAITING ? 'flex' : 'none'
         }
       >
-        <Final step={step} setStep={setStep} data={resp} />
+        <Final step={step} setStep={setStep} />
       </Container>
     </div>
   );

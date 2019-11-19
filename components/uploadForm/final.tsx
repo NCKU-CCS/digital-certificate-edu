@@ -7,7 +7,6 @@ import WarningIcon from '../../static/warning.png';
 interface IProp {
   step: EStep;
   setStep: React.Dispatch<React.SetStateAction<EStep>>;
-  data?: any;
 }
 
 interface IMessage {
@@ -21,7 +20,7 @@ interface IMessage {
 const SuccessMsg = {
   src: SuccessIcon,
   title: '認證成功',
-  description: 'success_description',
+  description: '此證書為教育部合作大專院校發放之數位證書',
   button: '查詢其他資訊',
   color: '#33bc3c',
 };
@@ -78,21 +77,17 @@ const Message: React.FC<{
   </React.Fragment>
 );
 
-const Final: React.FC<IProp> = (props: IProp) => {
-  switch (props.step) {
-    case EStep.SUCCESS: {
-      return <Message msg={SuccessMsg} setStep={props.setStep} />;
+const Final: React.FC<IProp> = (props: IProp) => (
+  <Message
+    msg={
+      props.step !== EStep.SUCCESS
+        ? props.step === EStep.FAILURE
+          ? FailureMsg
+          : WarningMsg
+        : SuccessMsg
     }
-    case EStep.FAILURE: {
-      return <Message msg={FailureMsg} setStep={props.setStep} />;
-    }
-    case EStep.WARNING: {
-      return <Message msg={WarningMsg} setStep={props.setStep} />;
-    }
-    default: {
-      return <div />;
-    }
-  }
-};
+    setStep={props.setStep}
+  />
+);
 
 export default Final;

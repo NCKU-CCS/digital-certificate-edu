@@ -26,26 +26,33 @@ const Form: React.FC<IProps> = (props: IProps) => {
     const formData = new FormData();
     formData.append('file', fileArray[0]);
 
-    // tslint:disable
-    const d = await axios
-      .post(`${process.env.MAIN_HOST}/students/validate/`, formData, {
-        headers: new Headers({ 'Content-Type': 'multipart/form-data"' }),
-      })
-      .then(resp => resp.data)
-      .catch(err => {
-        console.log(err);
-        return null;
-      });
-    // tslint:enable
-    if (d.appled && d.error_msg === 'success') {
-      props.setResp(d);
-      props.setStep(EStep.SUCCESS);
-    } else if (d.appled && d.error_msg !== 'success') {
-      props.setStep(EStep.WARNING);
-    } else if (!d.appled && d.error_msg === 'failure') {
-      props.setStep(EStep.FAILURE);
+    let d = null;
+    try {
+      const res = await axios.post(
+        `${process.env.MAIN_HOST}/students/validate/`,
+        formData,
+        {
+          headers: new Headers({ 'Content-Type': 'multipart/form-data"' }),
+        },
+      );
+      d = res.data;
+    } catch (err) {
+      alert(JSON.stringify(err));
+    }
+
+    if (d) {
+      if (d.applied && d.error_msg === 'success') {
+        props.setResp(d);
+        props.setStep(EStep.SUCCESS);
+      } else if (d.applied && d.error_msg !== 'success') {
+        props.setStep(EStep.WARNING);
+      } else if (!d.applied && d.error_msg === 'failure') {
+        props.setStep(EStep.FAILURE);
+      } else {
+        // not found
+        props.setStep(EStep.FAILURE);
+      }
     } else {
-      // not found
       props.setStep(EStep.FAILURE);
     }
   };

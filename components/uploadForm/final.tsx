@@ -29,14 +29,14 @@ const WarningMsg = {
   src: WarningIcon,
   title: '認證成功',
   description: '此PDF檔已更新\n請務必向發證校方進行詢問',
-  button: '查詢其他資訊',
+  button: '重新認證',
   color: '#ddc824',
 };
 const FailureMsg = {
   src: FailureIcon,
   title: '認證成功',
   description: '此PDF檔未受各大專院校簽章認證',
-  button: '查詢其他資訊',
+  button: '重新認證',
   color: '#dd2424',
 };
 

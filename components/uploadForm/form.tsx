@@ -7,6 +7,7 @@ import UploadIcon from '../../static/upload.png';
 interface IProps {
   setStep: React.Dispatch<React.SetStateAction<EStep>>;
   setResp: React.Dispatch<React.SetStateAction<any>>;
+  onLoading: (boolean) => void;
 }
 
 const Form: React.FC<IProps> = (props: IProps) => {
@@ -40,21 +41,26 @@ const Form: React.FC<IProps> = (props: IProps) => {
       alert(JSON.stringify(err));
     }
 
-    if (d) {
-      if (d.applied && d.error_msg === 'success') {
-        props.setResp(d);
-        props.setStep(EStep.SUCCESS);
-      } else if (d.applied && d.error_msg !== 'success') {
-        props.setStep(EStep.WARNING);
-      } else if (!d.applied && d.error_msg === 'failure') {
-        props.setStep(EStep.FAILURE);
+    props.onLoading(true);
+    props.setStep(EStep.WAITING);
+    setTimeout(() => {
+      if (d) {
+        if (d.applied && d.error_msg === 'success') {
+          props.setResp(d);
+          props.setStep(EStep.SUCCESS);
+        } else if (d.applied && d.error_msg !== 'success') {
+          props.setStep(EStep.WARNING);
+        } else if (!d.applied && d.error_msg === 'failure') {
+          props.setStep(EStep.FAILURE);
+        } else {
+          // not found
+          props.setStep(EStep.FAILURE);
+        }
       } else {
-        // not found
         props.setStep(EStep.FAILURE);
       }
-    } else {
-      props.setStep(EStep.FAILURE);
-    }
+      props.onLoading(false);
+    }, 5000);
   };
 
   /* form drag */

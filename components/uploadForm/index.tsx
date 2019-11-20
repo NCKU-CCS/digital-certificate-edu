@@ -7,7 +7,21 @@ import { EStep } from '../../constants';
 
 const UploadForm: React.FC = () => {
   const [step, setStep] = useState(EStep.PENDING);
-  const [resp, setResp] = useState({} as any);
+  const [resp, setResp] = useState<any>({});
+  const [loading, setLoading] = useState(false);
+
+  const handleLoading = (value: boolean) => {
+    setLoading(value);
+  };
+
+  const renderBody = () => {
+    const hasResult = resp && step !== EStep.PENDING && step !== EStep.WAITING;
+    return hasResult ? (
+      <Final step={step} setStep={setStep} />
+    ) : (
+      <Form setStep={setStep} setResp={setResp} onLoading={handleLoading} />
+    );
+  };
 
   return (
     <div
@@ -19,26 +33,8 @@ const UploadForm: React.FC = () => {
         alignItems: 'center',
       }}
     >
-      <Container
-        step={step}
-        display={
-          step === EStep.PENDING || step === EStep.WAITING ? 'flex' : 'none'
-        }
-      >
-        {step === EStep.PENDING ? (
-          <Form setStep={setStep} setResp={setResp} />
-        ) : (
-          <Loading />
-        )}
-      </Container>
-
-      <Container
-        step={step}
-        display={
-          step !== EStep.PENDING && step !== EStep.WAITING ? 'flex' : 'none'
-        }
-      >
-        <Final step={step} setStep={setStep} />
+      <Container step={step} display={'flex'}>
+        {loading ? <Loading /> : renderBody()}
       </Container>
     </div>
   );

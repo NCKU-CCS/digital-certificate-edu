@@ -43,6 +43,10 @@ const Container: React.FC<IProps> = (
           border: solid 6px #ddc824;
           background-color: #f5f5f5;
         }
+        .waiting {
+          border: solid 6px transparent;
+          background-color: transparent;
+        }
       `}</style>
     </div>
   );

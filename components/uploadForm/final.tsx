@@ -33,7 +33,7 @@ const WarningMsg = {
 };
 const FailureMsg = {
   src: FailureIcon,
-  title: '認證成功',
+  title: '認證失敗',
   description: '此PDF檔未受各大專院校簽章認證',
   button: '重新認證',
   color: '#dd2424',

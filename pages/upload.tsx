@@ -7,7 +7,7 @@ const Upload = () => {
   return (
     <div>
       <Head>
-        <title>Home</title>
+        <title>證書上傳 | 教育部數位證書</title>
       </Head>
       <Nav />
       <UploadForm />

@@ -6,7 +6,7 @@ const Index = () => {
   return (
     <div>
       <Head>
-        <title>Home</title>
+        <title>使用說明 | 教育部數位證書</title>
       </Head>
       <Nav />
     </div>

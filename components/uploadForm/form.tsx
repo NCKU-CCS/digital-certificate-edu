@@ -7,7 +7,7 @@ import UploadIcon from '../../static/upload.png';
 interface IProps {
   setStep: React.Dispatch<React.SetStateAction<EStep>>;
   setResp: React.Dispatch<React.SetStateAction<any>>;
-  onLoading: (boolean) => void;
+  onLoading: (value: boolean) => void;
 }
 
 const Form: React.FC<IProps> = (props: IProps) => {

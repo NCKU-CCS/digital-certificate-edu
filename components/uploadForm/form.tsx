@@ -29,6 +29,11 @@ const Form: React.FC<IProps> = (props: IProps) => {
 
     let d = null;
     try {
+      /**
+       * @function axios.post()
+       * @param {url, formdata, header}
+       * @brief send *.pdf to MAIN_HOST/students/validate/ through post method
+       */
       const res = await axios.post(
         `${process.env.MAIN_HOST}/students/validate/`,
         formData,

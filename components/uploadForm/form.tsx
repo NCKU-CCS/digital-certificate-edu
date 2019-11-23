@@ -33,7 +33,7 @@ const Form: React.FC<IProps> = (props: IProps) => {
         `${process.env.MAIN_HOST}/students/validate/`,
         formData,
         {
-          headers: new Headers({ 'Content-Type': 'multipart/form-data"' }),
+          headers: new Headers({ 'Content-Type': 'multipart/form-data' }),
         },
       );
       d = res.data;

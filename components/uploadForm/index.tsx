@@ -27,7 +27,8 @@ const UploadForm: React.FC = () => {
     <div
       style={{
         width: '100vw',
-        height: '100vh',
+        height: 'calc(100vh - 99px)',
+        marginTop: '99px',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',

@@ -20,14 +20,15 @@ interface IMessage {
 const SuccessMsg = {
   src: SuccessIcon,
   title: '認證成功',
-  description: '此證書為教育部合作大專院校發放之數位證書',
+  description: '該數位證書已受教育部與各大專院校簽章認證',
   button: '查詢其他資訊',
   color: '#33bc3c',
 };
 const WarningMsg = {
   src: WarningIcon,
   title: '認證成功',
-  description: '此PDF檔已更新\n請務必向發證校方進行詢問',
+  description:
+    '此數位證書已非最新版本或有變造可能請向證書提供者、發證校方進行確認',
   button: '重新認證',
   color: '#ddc824',
 };
@@ -66,6 +67,7 @@ const Message: React.FC<{
         color: #8e6969;
         margin-bottom: 80px;
         text-align: center;
+        padding: 0 100px 0 100px;
       }
       .button {
         font-family: EdwardianScriptITC;

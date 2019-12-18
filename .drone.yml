@@ -14,6 +14,15 @@ steps:
       - yarn install --prod=false
       - yarn run lint
 
+  - name: export static
+    image: node:10
+    commands:
+      - yarn install --prod=false
+      - yarn run export
+    when:
+      branch:
+        - master
+
   - name: deploy to github page
     image: plugins/gh-pages
     settings:
@@ -21,7 +30,7 @@ steps:
         from_secret: github_user
       password:
         from_secret: github_pawd
-      pages_directory: public/
+      pages_directory: out/
     when:
       branch:
         - master

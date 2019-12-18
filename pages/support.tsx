@@ -1,31 +1,34 @@
 import React from 'react';
 import Head from 'next/head';
+import '../i18n';
+import { useTranslation } from 'react-i18next';
 import Nav from '../components/nav';
 
-const supportSchool = [
-  {
-    school: '正修科技大學 註冊組',
-    telephone: '07-7358800 #1102~1106',
-    email: 'course@gcloud.csu.edu.tw',
-  },
-  {
-    school: '國立成功大學 註冊組',
-    telephone: '06-2757575 #50120',
-    email: 'em50120@email.ncku.edu.tw',
-  },
-  {
-    school: '國立清華大學',
-    telephone: '03-5712334',
-    email: 'registra@my.nthu.edu.tw',
-  },
-  {
-    school: '國立臺北科技大學',
-    telephone: '02-27712171 #1119',
-    email: 'soup060421@ntut.edu.tw',
-  },
-];
-
 const Index: React.FC = () => {
+  const { t } = useTranslation();
+  const supportSchool = [
+    {
+      school: t('SCHOOL_CSU'),
+      telephone: '07-7358800 #1102~1106',
+      email: 'course@gcloud.csu.edu.tw',
+    },
+    {
+      school: t('SCHOOL_NCKU'),
+      telephone: '06-2757575 #50120',
+      email: 'em50120@email.ncku.edu.tw',
+    },
+    {
+      school: t('SCHOOL_NTHU'),
+      telephone: '03-5712334',
+      email: 'registra@my.nthu.edu.tw',
+    },
+    {
+      school: t('SCHOOL_NTUT'),
+      telephone: '02-27712171 #1119',
+      email: 'soup060421@ntut.edu.tw',
+    },
+  ];
+
   return (
     <div>
       <Head>
@@ -39,8 +42,14 @@ const Index: React.FC = () => {
               <div>
                 <span className="title">{d.school}</span>
               </div>
-              <span>電話 : {d.telephone}</span>
-              <span>信箱 : {d.email}</span>
+              <span>
+                {t('telephone')}
+                {d.telephone}
+              </span>
+              <span>
+                {t('email')}
+                {d.email}
+              </span>
             </div>
           );
         })}

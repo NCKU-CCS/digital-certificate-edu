@@ -1,5 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
+import '../i18n';
+import { useTranslation } from 'react-i18next';
 import Nav from '../components/nav';
 import Image_1 from '../static/describe_1.png';
 import Image_2_1 from '../static/describe_2_1.png';
@@ -9,6 +11,7 @@ import Image_3_2 from '../static/describe_3_2.png';
 import Image_3_3 from '../static/describe_3_3.png';
 
 const Index = () => {
+  const { t } = useTranslation();
   return (
     <div>
       <Head>
@@ -17,26 +20,20 @@ const Index = () => {
       <Nav />
       <div className="stepContain">
         {/* 1 */}
-        <div className="stepText">
-          步驟一：上傳證書，請將「數位證書」以拖曳或是點擊的方式上傳
-        </div>
+        <div className="stepText">{t('DESCRIPT_1')}</div>
         <div className="stepImages">
           <img src={Image_1} />
         </div>
 
         {/* 2 */}
-        <div className="stepText">
-          步驟二：確認上傳成功與否，成功後即可點選「驗證」進行證書認證
-        </div>
+        <div className="stepText">{t('DESCRIPT_2')}</div>
         <div className="stepImages">
           <img src={Image_2_1} />
           <img src={Image_2_2} />
         </div>
 
         {/* 3 */}
-        <div className="stepText">
-          步驟三：認證後，系統將出現三種驗證結果。其中認證警告的情形，請務必向證書提供者、發證校方進行進一步詢問
-        </div>
+        <div className="stepText">{t('DESCRIPT_3')}</div>
         <div className="stepImages" style={{ marginBottom: 0 }}>
           <img src={Image_3_1} />
         </div>

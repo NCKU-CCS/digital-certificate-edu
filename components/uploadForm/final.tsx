@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { EStep } from '../../constants';
 import SuccessIcon from '../../static/success.png';
 import FailureIcon from '../../static/failure.png';
@@ -16,29 +17,6 @@ interface IMessage {
   button: string;
   color: string;
 }
-
-const SuccessMsg = {
-  src: SuccessIcon,
-  title: '認證成功',
-  description: '該數位證書已受教育部與各大專院校簽章認證',
-  button: '查詢其他資訊',
-  color: '#33bc3c',
-};
-const WarningMsg = {
-  src: WarningIcon,
-  title: '認證成功',
-  description:
-    '此數位證書已非最新版本或有變造可能請向證書提供者、發證校方進行確認',
-  button: '重新認證',
-  color: '#ddc824',
-};
-const FailureMsg = {
-  src: FailureIcon,
-  title: '認證失敗',
-  description: '此PDF檔未受各大專院校簽章認證',
-  button: '重新認證',
-  color: '#dd2424',
-};
 
 const Message: React.FC<{
   msg: IMessage;
@@ -79,17 +57,42 @@ const Message: React.FC<{
   </React.Fragment>
 );
 
-const Final: React.FC<IProp> = (props: IProp) => (
-  <Message
-    msg={
-      props.step !== EStep.SUCCESS
-        ? props.step === EStep.FAILURE
-          ? FailureMsg
-          : WarningMsg
-        : SuccessMsg
-    }
-    setStep={props.setStep}
-  />
-);
+const Final: React.FC<IProp> = (props: IProp) => {
+  const { t } = useTranslation();
+  const SuccessMsg = {
+    src: SuccessIcon,
+    title: t('FORM_SUCCESS_T'),
+    description: t('FORM_SUCCESS_D'),
+    button: t('FORM_SUCCESS_B'),
+    color: '#33bc3c',
+  };
+  const WarningMsg = {
+    src: WarningIcon,
+    title: t('FORM_WARNING_T'),
+    description: t('FORM_WARNING_D'),
+    button: t('FORM_WARNING_B'),
+    color: '#ddc824',
+  };
+  const FailureMsg = {
+    src: FailureIcon,
+    title: t('FORM_FAILURE_T'),
+    description: t('FORM_FAILURE_D'),
+    button: t('FORM_FAILURE_B'),
+    color: '#dd2424',
+  };
+
+  return (
+    <Message
+      msg={
+        props.step !== EStep.SUCCESS
+          ? props.step === EStep.FAILURE
+            ? FailureMsg
+            : WarningMsg
+          : SuccessMsg
+      }
+      setStep={props.setStep}
+    />
+  );
+};
 
 export default Final;

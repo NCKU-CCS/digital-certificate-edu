@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import Router from 'next/router';
 import EduIcon from '../static/edu_icon.png';
+import { useTranslation } from 'react-i18next';
 
 const Nav: React.FC = () => {
+  const { t } = useTranslation();
   const [path, setPath] = useState('');
   useEffect(() => {
     setPath(Router.pathname);
   });
 
   const navitems = [
-    { str: '證書上傳', ref: '/upload' },
-    { str: '使用說明', ref: '/descript' },
-    { str: '支援學校', ref: '/support' },
+    { str: t('NAV_UPLOAD'), ref: '/upload' },
+    { str: t('NAV_DESCRIPT'), ref: '/descript' },
+    { str: t('NAV_SCHOOL'), ref: '/support' },
   ];
 
   return (

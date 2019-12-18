@@ -1,0 +1,21 @@
+---
+kind: pipeline
+name: default
+
+steps:
+  - name: lint Drone YAML
+    image: sdesbure/yamllint:latest
+    commands:
+      - yamllint .drone.yml
+
+  - name: lint Typescript & Test Server
+    image: node:10
+    commands:
+      - yarn install --prod=false
+      - yarn run lint
+
+  - name: deploy to github page
+    image: node
+    commands:
+      - yarn install --prod=false
+      - yarn run deploy:github

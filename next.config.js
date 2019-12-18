@@ -16,8 +16,6 @@ module.exports = withImages({
       index: { page: '/index' },
       support: { page: '/support' },
       upload: { page: '/upload' },
-      'templates/ncku': { page: '/templates/ncku' },
-      'templates/ncku-en': { page: '/templates/ncku-en' },
     };
 
     if (process.env.DEPLOY_ENV === 'github') {

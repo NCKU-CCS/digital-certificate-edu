@@ -8,31 +8,8 @@ steps:
     commands:
       - yamllint .drone.yml
 
-  - name: lint Typescript & Test Server
+  - name: lint Typescript
     image: node:10
     commands:
       - yarn install --prod=false
       - yarn run lint
-
-  - name: export static
-    image: node:10
-    commands:
-      - yarn install --prod=false
-      - yarn run export
-    when:
-      branch:
-        - master
-
-  - name: deploy to github page
-    image: plugins/gh-pages
-    settings:
-      username:
-        from_secret: github_user
-      password:
-        from_secret: github_pawd
-      ssh_key:
-        from_secret: github_sshkey
-      pages_directory: out/
-    when:
-      branch:
-        - master

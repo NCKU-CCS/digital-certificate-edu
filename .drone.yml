@@ -30,6 +30,8 @@ steps:
         from_secret: github_user
       password:
         from_secret: github_pawd
+      ssh_key:
+        from_secret: github_sshkey
       pages_directory: out/
     when:
       branch:

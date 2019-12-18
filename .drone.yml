@@ -21,6 +21,7 @@ steps:
         from_secret: github_user
       password:
         from_secret: github_pawd
+      pages_directory: public/
     when:
       branch:
         - master

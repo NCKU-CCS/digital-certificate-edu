@@ -19,3 +19,6 @@ steps:
     commands:
       - yarn install --prod=false
       - yarn run deploy:github
+    when:
+      branch:
+        - master

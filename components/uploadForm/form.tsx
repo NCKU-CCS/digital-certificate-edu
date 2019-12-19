@@ -26,6 +26,10 @@ const Form: React.FC<IProps> = (props: IProps) => {
   };
   const handleSubmit = async (event: React.SyntheticEvent) => {
     event.preventDefault();
+    if (fileArray.length === 0) {
+      alert('No file upload.');
+      return;
+    }
     const formData = new FormData();
     formData.append('file', fileArray[0]);
 

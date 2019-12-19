@@ -46,6 +46,7 @@ const Index: React.FC = () => {
                 {t('telephone')}
                 {d.telephone}
               </span>
+              <br />
               <span>
                 {t('email')}
                 {d.email}

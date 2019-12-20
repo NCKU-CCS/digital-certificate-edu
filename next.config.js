@@ -14,6 +14,7 @@ module.exports = withImages({
       index: { page: '/index' },
       support: { page: '/support' },
       upload: { page: '/upload' },
+      descript: { page: '/descript' },
     };
     return routes;
   },

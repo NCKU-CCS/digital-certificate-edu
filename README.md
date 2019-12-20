@@ -1,5 +1,7 @@
 # digital-certificate-edu
 
+[![Build Status](https://cloud.drone.io/api/badges/wiasliaw77210/digital-certificate-edu/status.svg)](https://cloud.drone.io/wiasliaw77210/digital-certificate-edu)
+
 Digital certificate web for EDU Depart.
 
 #### pre-requirement

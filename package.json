@@ -13,9 +13,11 @@
   "dependencies": {
     "axios": "^0.19.0",
     "dotenv": "^8.2.0",
+    "i18next": "^19.0.2",
     "next": "9.0.6",
     "react": "16.9.0",
     "react-dom": "16.9.0",
+    "react-i18next": "^11.2.7",
     "styled-components": "^4.4.0"
   },
   "devDependencies": {

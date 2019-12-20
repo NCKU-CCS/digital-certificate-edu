@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import axios from 'axios';
+import { useTranslation } from 'react-i18next';
 import { EStep } from '../../constants';
 import FileIcon from '../../static/file.png';
 import UploadIcon from '../../static/upload.png';
@@ -14,6 +15,7 @@ const Form: React.FC<IProps> = (props: IProps) => {
   const fileBox = useRef(null);
   const [fileArray, setfileArray] = useState([]);
   const [dragging, setdragging] = useState(false);
+  const { t } = useTranslation();
 
   /* form input and submit */
   const handleInput = (event: React.SyntheticEvent) => {
@@ -24,6 +26,10 @@ const Form: React.FC<IProps> = (props: IProps) => {
   };
   const handleSubmit = async (event: React.SyntheticEvent) => {
     event.preventDefault();
+    if (fileArray.length === 0) {
+      alert('No file upload.');
+      return;
+    }
     const formData = new FormData();
     formData.append('file', fileArray[0]);
 
@@ -112,9 +118,12 @@ const Form: React.FC<IProps> = (props: IProps) => {
           <React.Fragment>
             <img src={UploadIcon} />
             <label>
-              拖曳或是
-              <span style={{ borderBottom: '2px solid #4781e6' }}>上傳</span>
-              檔案
+              {t('UPLOAD_CONTENT_1')}
+              <span style={{ borderBottom: '2px solid #4781e6' }}>
+                {' '}
+                {t('UPLOAD_CONTENT_2')}{' '}
+              </span>
+              {t('UPLOAD_CONTENT_3')}
               <input
                 ref={fileBox}
                 onChange={handleInput}
@@ -142,7 +151,7 @@ const Form: React.FC<IProps> = (props: IProps) => {
       </div>
 
       <button type="submit" className="button">
-        認證
+        {t('UPLOAD_BUTTON')}
       </button>
 
       <style jsx>{`

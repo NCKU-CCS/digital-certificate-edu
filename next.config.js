@@ -6,7 +6,7 @@ const { publicRuntimeConfig } = require('./next.runtimeConfig');
 
 module.exports = withImages({
   assetPrefix: publicRuntimeConfig.GITHUB
-    ? `/${publicRuntimeConfig.PROJ_NAME}/`
+    ? `/${publicRuntimeConfig.PROJ_NAME}`
     : '',
   exportPathMap: function() {
     const routes = {

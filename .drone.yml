@@ -18,7 +18,7 @@ steps:
     image: node:10
     commands:
       - yarn install --prod=false
-      - NODE_ENV=production DEPLOY_ENV=github yarn export
+      - NODE_ENV=production DEPLOY_ENV=github yarn export && touch out/.nojekyll
     when:
       branch:
         - master

@@ -1,6 +1,5 @@
 import React from 'react';
 import Head from 'next/head';
-import '../i18n';
 import { useTranslation } from 'react-i18next';
 import Nav from '../components/nav';
 import Image_1 from '../static/describe_1.png';

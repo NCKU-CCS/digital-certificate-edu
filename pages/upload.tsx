@@ -1,6 +1,5 @@
 import React from 'react';
 import Head from 'next/head';
-import '../i18n';
 import Nav from '../components/nav';
 import UploadForm from '../components/uploadForm';
 

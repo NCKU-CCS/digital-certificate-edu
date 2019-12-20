@@ -18,7 +18,7 @@ steps:
     image: node:10
     commands:
       - yarn install --prod=false
-      - yarn run export
+      - NODE_ENV=production DEPLOY_ENV=github yarn export
     when:
       branch:
         - master
@@ -33,6 +33,9 @@ steps:
       ssh_key:
         from_secret: github_sshkey
       pages_directory: out/
+    environment:
+      MAIN_HOST:
+        from_secret: mainhost
     when:
       branch:
         - master

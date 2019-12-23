@@ -19,7 +19,7 @@
   "FORM_SUCCESS_D": "該數位證書已受教育部與各大專院校簽章認證",
   "FORM_SUCCESS_B": "查詢其他資訊",
   "FORM_WARNING_T": "認證警告",
-  "FORM_WARNING_D": "此數位證書已非最新版本或有變造可能請向證書提供者、發證校方進行確認",
+  "FORM_WARNING_D": "此數位證書已非最新版本",
   "FORM_WARNING_B": "重新認證",
   "FORM_FAILURE_T": "認證失敗",
   "FORM_FAILURE_D": "此數位證書未受各大專院校簽章認證",

@@ -39,24 +39,3 @@ steps:
       event:
         exclude:
           - pull_request
-
-  - name: deploy to server
-    images: appleboy/drone-ssh
-    settings:
-      host:
-        from_secret: server_host
-      username:
-        from_secret: server_user
-      password:
-        from_secret: server_pawd
-      script:
-        - cd digital-certificate-edu/
-        - pm2 delete dcert-frontend
-        - git fetch origin && git pull origin master
-        - pm2 start app-pm2.json
-    when:
-      branch:
-        - master
-      event:
-        exclude:
-          - pull_request

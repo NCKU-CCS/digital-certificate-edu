@@ -31,6 +31,7 @@ const Form: React.FC<IProps> = (props: IProps) => {
       return;
     }
     const formData = new FormData();
+    const token = await axios.get('/api/token').then(resp => resp.data);
     formData.append('file', fileArray[0]);
 
     /**
@@ -42,7 +43,10 @@ const Form: React.FC<IProps> = (props: IProps) => {
       `${process.env.MAIN_HOST}/students/validate/`,
       formData,
       {
-        headers: new Headers({ 'Content-Type': 'multipart/form-data' }),
+        headers: new Headers({
+          'Content-Type': 'multipart/form-data',
+          Authorization: `jwt ${token}`,
+        }),
       },
     );
 

@@ -34,31 +34,25 @@ const Form: React.FC<IProps> = (props: IProps) => {
     const token = await axios.get('/api/token').then(resp => resp.data);
     formData.append('file', fileArray[0]);
 
-    /**
-     * @function axios.post()
-     * @param {url, formdata, header}
-     * @brief send *.pdf to MAIN_HOST/students/validate/ through post method
-     */
-    const res = await axios.post<{ applied: boolean; error_msg: string }>(
-      `${process.env.MAIN_HOST}/students/validate/`,
-      formData,
-      {
-        headers: new Headers({
-          'Content-Type': 'multipart/form-data',
-          Authorization: `jwt ${token}`,
-        }),
+    const res = await fetch(`${process.env.MAIN_HOST}/students/validate/`, {
+      body: formData,
+      mode: 'cors',
+      method: 'POST',
+      headers: {
+        Authorization: `jwt ${token}`,
       },
-    );
+      credentials: 'include',
+    }).then(resp => resp.json());
 
     props.onLoading(true);
     props.setStep(EStep.WAITING);
     setTimeout(() => {
       if (res) {
-        if (res.data.applied && res.data.error_msg === 'success') {
+        if (res.applied && res.error_msg === 'success') {
           props.setStep(EStep.SUCCESS);
-        } else if (res.data.applied && res.data.error_msg !== 'success') {
+        } else if (res.applied && res.error_msg !== 'success') {
           props.setStep(EStep.WARNING);
-        } else if (!res.data.applied && res.data.error_msg === 'failure') {
+        } else if (!res.applied && res.error_msg === 'failure') {
           props.setStep(EStep.FAILURE);
         } else {
           // not found

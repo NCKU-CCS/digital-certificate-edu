@@ -19,11 +19,11 @@ app.prepare().then(() => {
   server.get('/support', (req, res) => app.render(req, res, '/support'));
   server.get('/upload', (req, res) => app.render(req, res, '/upload'));
   server.get('/descript', (req, res) => app.render(req, res, '/descript'));
-  server.get('/api/token', (req, res) => {
+  server.get('/api/token', (_, res) => {
     const token = jwt.sign(
       {
         from: 'digital-certificate-edu',
-        expired: new Date(Date.now() + 1000 * 60 * 10),
+        expired: Date.now() + 1000 * 60 * 10,
       },
       jwtsecret,
     );

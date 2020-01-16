@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 import { useTranslation } from 'react-i18next';
 import { EStep } from '../../constants';
@@ -15,7 +15,16 @@ const Form: React.FC<IProps> = (props: IProps) => {
   const fileBox = useRef(null);
   const [fileArray, setfileArray] = useState([]);
   const [dragging, setdragging] = useState(false);
+  const [token, setToken] = useState('');
   const { t } = useTranslation();
+
+  // useEffect
+  useEffect(() => {
+    (async () => {
+      const token = await axios.get('/api/token').then(resp => resp.data);
+      setToken(token);
+    })();
+  }, []);
 
   /* form input and submit */
   const handleInput = (event: React.SyntheticEvent) => {
@@ -31,7 +40,6 @@ const Form: React.FC<IProps> = (props: IProps) => {
       return;
     }
     const formData = new FormData();
-    const token = await axios.get('/api/token').then(resp => resp.data);
     formData.append('file', fileArray[0]);
 
     const res = await fetch(`${process.env.MAIN_HOST}/students/validate/`, {
@@ -112,6 +120,7 @@ const Form: React.FC<IProps> = (props: IProps) => {
           borderColor: dragging ? 'blue' : '#707070',
         }}
       >
+        <input type="hidden" name="csrf" id="csrf" value={token} />
         {fileArray.length === 0 ? (
           <React.Fragment>
             <img src={UploadIcon} />

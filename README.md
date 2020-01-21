@@ -29,6 +29,14 @@ Run frontend at `localhost:3000` with hot mode
 $ yarn dev
 ```
 
+### Production
+
+Run frontend with process manager
+
+```
+$ bash bin/deploy
+```
+
 ### Export static HTML file
 
 Build and export `*.html` and `assets` in `./out` folder

@@ -9,22 +9,18 @@ const Index: React.FC = () => {
     {
       school: t('SCHOOL_CSU'),
       telephone: '07-7358800 #1102~1106',
-      email: 'course@gcloud.csu.edu.tw',
     },
     {
       school: t('SCHOOL_NCKU'),
       telephone: '06-2757575 #50120',
-      email: 'em50120@email.ncku.edu.tw',
     },
     {
       school: t('SCHOOL_NTHU'),
       telephone: '03-5712334',
-      email: 'registra@my.nthu.edu.tw',
     },
     {
       school: t('SCHOOL_NTUT'),
       telephone: '02-27712171 #1119',
-      email: 'soup060421@ntut.edu.tw',
     },
   ];
 
@@ -44,11 +40,6 @@ const Index: React.FC = () => {
               <span>
                 {t('telephone')}
                 {d.telephone}
-              </span>
-              <br />
-              <span>
-                {t('email')}
-                {d.email}
               </span>
             </div>
           );

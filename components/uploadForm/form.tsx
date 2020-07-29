@@ -22,7 +22,7 @@ const Form: React.FC<IProps> = (props: IProps) => {
   useEffect(() => {
     (async () => {
       const tokenInit = await axios
-        .get(`${process.env.MAIN_HOST}/students/token/`)
+        .get(`${process.env.MAIN_HOST}/api/token`)
         .then(resp => resp.data);
       setToken(tokenInit);
     })();
